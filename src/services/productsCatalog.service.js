@@ -11,7 +11,9 @@ function query(filterBy) {
   let stores = JSON.parse(localStorage.getItem(STORAGE_KEY))
   if (filterBy) {
     if (filterBy.priceFilter.max || filterBy.priceFilter.min) {
-      const max = filterBy.priceFilter.max ? +filterBy.priceFilter.max : Infinity
+      const max = filterBy.priceFilter.max
+        ? +filterBy.priceFilter.max
+        : Infinity
       const min = filterBy.priceFilter.min
         ? +filterBy.priceFilter.min
         : -Infinity
