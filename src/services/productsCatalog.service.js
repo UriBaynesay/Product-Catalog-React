@@ -7,8 +7,34 @@ export const productsCatalogService = {
   getFilters,
 }
 
-function query(filterBy = null) {
-  const stores = JSON.parse(localStorage.getItem(STORAGE_KEY))
+function query(filterBy) {
+  let stores = JSON.parse(localStorage.getItem(STORAGE_KEY))
+  if (filterBy) {
+    if (filterBy.priceFilter.max || filterBy.priceFilter.min) {
+      const max = filterBy.priceFilter.max
+        ? +filterBy.priceFilter.max
+        : Infinity
+      const min = filterBy.priceFilter.min
+        ? +filterBy.priceFilter.min
+        : -Infinity
+      stores = stores.filter((store) => {
+        store.Products = store.Products.filter(
+          (product) => product.Price < max && product.Price > min
+        )
+        return store.Products.length
+      })
+      console.log(stores)
+    }
+    if (filterBy.genderFilter) {
+      stores = stores.filter((store) => {
+        store.Products = store.Products.filter((product) =>
+          product.ProductTags.includes(+filterBy.genderFilter)
+        )
+        return store.Products.length
+      })
+      console.log(stores)
+    }
+  }
   return stores
 }
 
