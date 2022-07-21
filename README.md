@@ -4,6 +4,6 @@
 
 React SCSS
 
-##Demo
+## Demo
 
 https://uribaynesay.github.io/Product-Catalog-React/
