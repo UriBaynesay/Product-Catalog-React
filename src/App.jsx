@@ -1,5 +1,5 @@
 import "./assets/styles/main.scss"
-import { HomePage } from "./pages/HomePage"
+import { ProductsCatalogApp } from "./pages/ProductsCatalogApp"
 import { AppFooter } from "./cmp/app-footer"
 import { AppHeader } from "./cmp/app-header"
 
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <AppHeader />
       <main className="main-container">
-        <HomePage />
+        <ProductsCatalogApp />
       </main>
       <AppFooter />
     </div>
