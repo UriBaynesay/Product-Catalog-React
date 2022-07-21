@@ -2,21 +2,33 @@ import { useEffect } from "react"
 import { useState } from "react"
 import { ProductsFilter } from "../cmp/products-filter"
 import { ProductsList } from "../cmp/products-list"
-import { productsCatalogService } from "../services/productsCatalog.service";
+import { productsCatalogService } from "../services/productsCatalog.service"
 
 export const ProductsCatalogApp = () => {
-  const [stores, setStores] = useState(null)
+  const [products, setProducts] = useState(null)
 
-  useEffect(()=>{
-    setStores(productsCatalogService.query())
-  },[])
+  useEffect(() => {
+    loadProducts()
+  }, [])
 
-  const setFilter = (type, value) => {}
+  const loadProducts = (filterBy = null) => {
+    setProducts(productsCatalogService.query(filterBy))
+  }
+
+  const setFilter = (filterBy) => {
+    loadProducts({
+      priceFilter: {
+        max: filterBy.priceFilterMax,
+        min: filterBy.priceFilterMin,
+      },
+      genderFilter: filterBy.genderFilter,
+    })
+  }
 
   return (
     <div className="home-page-container">
       <ProductsFilter setFilter={setFilter} />
-      <ProductsList stores={stores} />
+      <ProductsList products={products} />
     </div>
   )
 }

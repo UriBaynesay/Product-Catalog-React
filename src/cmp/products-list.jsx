@@ -1,4 +1,4 @@
-export const ProductsList = ({ stores }) => {
+export const ProductsList = ({ products }) => {
   return (
     <section className="products-list-container">
       hello from product list
